@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ressources/Nature/bush.png" type="Texture" id=1]
+
+[node name="Bush" type="Sprite3D"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+axis = 0
+texture = ExtResource( 1 )

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ressources/Nature/tile.png" type="Texture" id=1]
+
+[node name="Tile" type="Sprite3D"]
+transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
+axis = 1
+texture = ExtResource( 1 )
