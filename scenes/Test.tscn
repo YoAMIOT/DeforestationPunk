@@ -9,7 +9,7 @@
 [node name="MapTest" type="Spatial"]
 
 [node name="Ground" parent="." instance=ExtResource( 1 )]
-transform = Transform( 10000, 0, 0, 0, -0.000437114, 1, 0, -10000, -4.37114e-08, 0, 0, 0 )
+transform = Transform( 2400, 0, 0, 0, -0.000104907, 1, 0, -2400, -4.37114e-08, 0, 0, 0 )
 
 [node name="Tree" type="Spatial" parent="."]
 script = ExtResource( 5 )
