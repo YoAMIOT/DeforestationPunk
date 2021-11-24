@@ -1,40 +1,20 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Nature/Ground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Nature/Pine.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Nature/Bush.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/playerTest.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/MapTest.gd" type="Script" id=5]
 
-[node name="Spatial" type="Spatial"]
+[node name="MapTest" type="Spatial"]
 
 [node name="Ground" parent="." instance=ExtResource( 1 )]
 transform = Transform( 10000, 0, 0, 0, -0.000437114, 1, 0, -10000, -4.37114e-08, 0, 0, 0 )
 
 [node name="Tree" type="Spatial" parent="."]
-
-[node name="Pine2" parent="Tree" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.21762, -22.4923 )
-
-[node name="Pine3" parent="Tree" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0105, 8.21762, -10.1437 )
-
-[node name="Pine4" parent="Tree" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.7546, 8.21762, -34.7713 )
-
-[node name="Bush" parent="Tree" instance=ExtResource( 3 )]
-transform = Transform( 0.433012, -0.25, 0, 0.25, 0.433012, 0, 0, 0, 0.5, -2.02733, 2.90468, 0 )
-
-[node name="Bush2" parent="Tree" instance=ExtResource( 3 )]
-transform = Transform( 0.433012, -0.25, 0, 0.25, 0.433012, 0, 0, 0, 0.5, 11.2657, 2.90468, -23.262 )
-
-[node name="Bush3" parent="Tree" instance=ExtResource( 3 )]
-transform = Transform( 0.433012, -0.25, 0, 0.25, 0.433012, 0, 0, 0, 0.5, -9.88548, 2.90468, 5.5966 )
-
-[node name="Bush4" parent="Tree" instance=ExtResource( 3 )]
-transform = Transform( 0.433012, -0.25, 0, 0.25, 0.433012, 0, 0, 0, 0.5, -7.90492, 2.90468, -47.2261 )
-
-[node name="Bush5" parent="Tree" instance=ExtResource( 3 )]
-transform = Transform( 0.433012, -0.25, 0, 0.25, 0.433012, 0, 0, 0, 0.5, -16.6938, 2.90468, -19.3187 )
+script = ExtResource( 5 )
+Pine = ExtResource( 2 )
+Bush = ExtResource( 3 )
 
 [node name="PlayerTest" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62816, -5.87798 )
