@@ -15,5 +15,9 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite3D" parent="."]
 transform = Transform( 0.819151, -0.573575, 0, 0.573575, 0.819151, 0, 0, 0, 1, 0, -0.269627, 0 )
+use_in_baked_light = true
 axis = 0
+shaded = true
+double_sided = false
+alpha_cut = 2
 texture = ExtResource( 1 )

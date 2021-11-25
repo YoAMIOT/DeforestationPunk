@@ -15,6 +15,9 @@ shape = SubResource( 1 )
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 0.707107, -0.212132, 0, 0.707107, 0.212132, 0, 0, 0, 0.124622, 0, 0, 0 )
 axis = 0
+shaded = true
+double_sided = false
+alpha_cut = 2
 texture = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
