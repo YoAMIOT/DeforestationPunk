@@ -25,3 +25,14 @@ func getInput():
 		velocity.z += speed;
 	if Input.is_action_pressed("right"):
 		velocity.z -= speed;
+
+	if Input.is_action_just_pressed("pause"):
+		if get_node("PauseMenu").visible == true:
+			if get_node("PauseMenu/MainPauseMenu").visible == true and get_node("PauseMenu/OptionMenu").visible == false:
+				get_node("PauseMenu").visible = false;
+			elif get_node("PauseMenu/OptionMenu").visible == true and get_node("PauseMenu/MainPauseMenu").visible == false:
+				get_node("PauseMenu/OptionMenu").visible = false;
+				get_node("PauseMenu/MainPauseMenu").visible = true;
+
+		elif get_node("PauseMenu").visible == false:
+			get_node("PauseMenu").visible = true;
