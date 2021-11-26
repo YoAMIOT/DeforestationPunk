@@ -16,15 +16,16 @@ func _physics_process(delta):
 ###Get Input function###
 func getInput():
 	velocity = Vector3();
-	
-	if Input.is_action_pressed("up"):
-		velocity.x -= speed;
-	if Input.is_action_pressed("down"):
-		velocity.x += speed;
-	if Input.is_action_pressed("left"):
-		velocity.z += speed;
-	if Input.is_action_pressed("right"):
-		velocity.z -= speed;
+
+	if get_node("PauseMenu").visible == false:
+		if Input.is_action_pressed("up"):
+			velocity.x -= 1;
+		if Input.is_action_pressed("down"):
+			velocity.x += 1;
+		if Input.is_action_pressed("left"):
+			velocity.z += 1;
+		if Input.is_action_pressed("right"):
+			velocity.z -= 1;
 
 	if Input.is_action_just_pressed("pause"):
 		if get_node("PauseMenu").visible == true:
@@ -36,3 +37,5 @@ func getInput():
 
 		elif get_node("PauseMenu").visible == false:
 			get_node("PauseMenu").visible = true;
+
+	velocity = velocity.normalized() * speed;

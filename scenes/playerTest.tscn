@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/playerTest.gd" type="Script" id=1]
 [ext_resource path="res://ressources/Nature/bush.png" type="Texture" id=2]
 [ext_resource path="res://scenes/PauseMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Env.tres" type="Environment" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 1.85517
@@ -24,6 +25,7 @@ texture = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, 30, 30, 0 )
+environment = ExtResource( 4 )
 current = true
 size = 507.72
 far = 557.8
