@@ -1,24 +1,42 @@
 extends Control
 
-###Variables###
-var dofBlurOn : String = "Depth of Field: On";
-var dofBlurOff : String = "Depth of Field: Off";
-var windowModeFullscreen : String = "Window: Fullscreen"
-var windowModeWindowed : String = "Window: Windowed"
+###Variable###
+var settingsFile : String = "user://settings.save";
+var brightness : float = 1;
+var contrast : float = 1;
+var saturation : float = 1;
+var fullscreen : bool;
+var dofBlur: bool;
+var vSync : bool;
 
 ###Ready func###
 func _ready():
-	if get_parent().get_node("Camera").environment.dof_blur_far_enabled == true and get_parent().get_node("Camera").environment.dof_blur_near_enabled == true:
-		get_node("OptionMenu/OptionsContainer/DoF").text = dofBlurOn;
-	elif get_parent().get_node("Camera").environment.dof_blur_far_enabled == false and get_parent().get_node("Camera").environment.dof_blur_near_enabled == false:
-		get_node("OptionMenu/OptionsContainer/DoF").text = dofBlurOff;
+	#Load Data#
+	var file : File = File.new()
+	if file.file_exists(settingsFile):
+		file.open(settingsFile, File.READ)
+		brightness = file.get_var()
+		contrast = file.get_var()
+		saturation = file.get_var()
+		fullscreen = file.get_var()
+		dofBlur = file.get_var()
+		vSync = file.get_var()
+		file.close()
+
+		get_parent().get_node("Camera").environment.adjustment_brightness = brightness;
+		get_parent().get_node("Camera").environment.adjustment_contrast = contrast;
+		get_parent().get_node("Camera").environment.adjustment_saturation = saturation;
+		OS.set_window_fullscreen(fullscreen);
+		get_parent().get_node("Camera").environment.set_dof_blur_far_enabled(dofBlur);
+		get_parent().get_node("Camera").environment.set_dof_blur_near_enabled(dofBlur);
+		OS.set_use_vsync(vSync);
+
+	get_node("OptionMenu/OptionsContainer/Vsync/VSync").pressed = OS.vsync_enabled;
+	get_node("OptionMenu/OptionsContainer/DoF/DoF").pressed = get_parent().get_node("Camera").environment.dof_blur_far_enabled;
+	get_node("OptionMenu/OptionsContainer/Fullscreen/Fullscreen").pressed = OS.window_fullscreen;
 	get_node("OptionMenu/OptionsContainer/Brightness/Brightness").value = get_parent().get_node("Camera").environment.adjustment_brightness;
 	get_node("OptionMenu/OptionsContainer/Contrast/Contrast").value = get_parent().get_node("Camera").environment.adjustment_contrast;
 	get_node("OptionMenu/OptionsContainer/Saturation/Saturation").value = get_parent().get_node("Camera").environment.adjustment_saturation;
-	if OS.window_fullscreen == true:
-		get_node("OptionMenu/OptionsContainer/WindowMode").text = windowModeFullscreen;
-	elif OS.window_fullscreen == false:
-		get_node("OptionMenu/OptionsContainer/WindowMode").text = windowModeWindowed;
 
 
 
@@ -40,35 +58,47 @@ func _on_Back_pressed():
 	get_node("OptionMenu").visible = false;
 	get_node("MainPauseMenu").visible = true;
 
-###Change DofBlur###
-func _on_DoF_pressed():
-	if get_parent().get_node("Camera").environment.dof_blur_far_enabled == true and get_parent().get_node("Camera").environment.dof_blur_near_enabled == true:
-		get_node("OptionMenu/OptionsContainer/DoF").text = dofBlurOff;
-		get_parent().get_node("Camera").environment.set_dof_blur_far_enabled(false);
-		get_parent().get_node("Camera").environment.set_dof_blur_near_enabled(false);
 
-	elif get_parent().get_node("Camera").environment.dof_blur_far_enabled == false and get_parent().get_node("Camera").environment.dof_blur_near_enabled == false:
-		get_node("OptionMenu/OptionsContainer/DoF").text = dofBlurOn;
-		get_parent().get_node("Camera").environment.set_dof_blur_far_enabled(true);
-		get_parent().get_node("Camera").environment.set_dof_blur_near_enabled(true);
 
 ###Change Brightness###
 func _on_Brightness_value_changed(value):
 	get_parent().get_node("Camera").environment.adjustment_brightness = value;
+	brightness = value;
 
 ###Change Contrast###
 func _on_Contrast_value_changed(value):
 	get_parent().get_node("Camera").environment.adjustment_contrast = value;
+	contrast = value;
 
 ###Change Saturation###
 func _on_Saturation_value_changed(value):
 	get_parent().get_node("Camera").environment.adjustment_saturation = value;
+	var saturation = value;
 
 ###Change Window Mode###
-func _on_WindowMode_pressed():
-	if OS.window_fullscreen == true:
-		get_node("OptionMenu/OptionsContainer/WindowMode").text = windowModeWindowed;
-		OS.set_window_fullscreen(false);
-	elif OS.window_fullscreen == false:
-		get_node("OptionMenu/OptionsContainer/WindowMode").text = windowModeFullscreen;
-		OS.set_window_fullscreen(true);
+func _on_Fullscreen_toggled(checked : bool):
+	OS.set_window_fullscreen(checked);
+	fullscreen = checked;
+
+###Change DofBlur###
+func _on_DoF_toggled(checked : bool):
+	get_parent().get_node("Camera").environment.set_dof_blur_far_enabled(checked);
+	get_parent().get_node("Camera").environment.set_dof_blur_near_enabled(checked);
+	dofBlur = checked;
+
+###Change V-Sync###
+func _on_VSync_toggled(checked : bool):
+	OS.set_use_vsync(checked);
+	vSync = checked;
+
+###Save Settings###
+func _on_Save_pressed():
+	var file : File = File.new();
+	file.open(settingsFile, File.WRITE);
+	file.store_var(brightness);
+	file.store_var(contrast);
+	file.store_var(saturation);
+	file.store_var(fullscreen);
+	file.store_var(dofBlur);
+	file.store_var(vSync);
+	file.close();

@@ -11,7 +11,6 @@ __meta__ = {
 }
 
 [node name="MainPauseMenu" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -19,40 +18,39 @@ __meta__ = {
 }
 
 [node name="Background" type="Polygon2D" parent="MainPauseMenu"]
-color = Color( 0.341176, 0.341176, 0.341176, 0.694118 )
+scale = Vector2( 0.444444, 1 )
+color = Color( 0.243137, 0.243137, 0.243137, 0.878431 )
 polygon = PoolVector2Array( 576, 0, 576, 1080, 0, 1080, 0, 0 )
 
 [node name="Resume" type="Button" parent="MainPauseMenu"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_top = -196.0
-margin_right = 576.0
-margin_bottom = -68.0
+margin_top = 466.0
+margin_right = 256.0
+margin_bottom = 526.0
 text = "Resume"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Options" type="Button" parent="MainPauseMenu"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_top = -64.0
-margin_right = 576.0
-margin_bottom = 64.0
+margin_top = 530.0
+margin_right = 256.0
+margin_bottom = 590.0
 text = "Options"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Quit" type="Button" parent="MainPauseMenu"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_top = 68.0
-margin_right = 576.0
-margin_bottom = 196.0
+margin_top = 594.0
+margin_right = 256.0
+margin_bottom = 654.0
 text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="OptionMenu" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -60,7 +58,8 @@ __meta__ = {
 }
 
 [node name="Background" type="Polygon2D" parent="OptionMenu"]
-color = Color( 0.341176, 0.341176, 0.341176, 0.694118 )
+scale = Vector2( 0.133333, 1 )
+color = Color( 0.243137, 0.243137, 0.243137, 0.878431 )
 polygon = PoolVector2Array( 0, 0, 1920, 0, 1920, 1080, 0, 1080 )
 
 [node name="OptionsContainer" type="VBoxContainer" parent="OptionMenu"]
@@ -68,9 +67,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -448.0
+margin_left = -639.0
 margin_top = -532.0
-margin_right = 448.0
+margin_right = -128.0
 margin_bottom = 532.0
 alignment = 1
 __meta__ = {
@@ -78,33 +77,87 @@ __meta__ = {
 }
 
 [node name="Background" type="Polygon2D" parent="OptionMenu/OptionsContainer"]
-position = Vector2( 0, -8 )
-scale = Vector2( 1.55556, 1 )
-color = Color( 0.658824, 0.658824, 0.658824, 0.670588 )
+position = Vector2( -65, -8 )
+scale = Vector2( 1.11111, 1 )
+color = Color( 0.658824, 0.658824, 0.658824, 0.784314 )
 polygon = PoolVector2Array( 576, 0, 576, 1080, 0, 1080, 0, 0 )
 
-[node name="WindowMode" type="Button" parent="OptionMenu/OptionsContainer"]
-margin_top = 459.0
-margin_right = 896.0
-margin_bottom = 479.0
-text = "Window: Fullscreen"
+[node name="Fullscreen" type="HBoxContainer" parent="OptionMenu/OptionsContainer"]
+margin_top = 441.0
+margin_right = 511.0
+margin_bottom = 465.0
+alignment = 1
 
-[node name="DoF" type="Button" parent="OptionMenu/OptionsContainer"]
-margin_top = 483.0
-margin_right = 896.0
-margin_bottom = 503.0
-text = "Depth of Field: On"
+[node name="FulscreenLabel" type="Label" parent="OptionMenu/OptionsContainer/Fullscreen"]
+margin_left = 206.0
+margin_top = 5.0
+margin_right = 276.0
+margin_bottom = 19.0
+text = "Fullscreen:"
+
+[node name="Fullscreen" type="CheckBox" parent="OptionMenu/OptionsContainer/Fullscreen"]
+margin_left = 280.0
+margin_right = 304.0
+margin_bottom = 24.0
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Vsync" type="HBoxContainer" parent="OptionMenu/OptionsContainer"]
+margin_top = 469.0
+margin_right = 511.0
+margin_bottom = 493.0
+alignment = 1
+
+[node name="VSyncLabel" type="Label" parent="OptionMenu/OptionsContainer/Vsync"]
+margin_left = 218.0
+margin_top = 5.0
+margin_right = 264.0
+margin_bottom = 19.0
+text = "V-Sync:"
+
+[node name="VSync" type="CheckBox" parent="OptionMenu/OptionsContainer/Vsync"]
+margin_left = 268.0
+margin_right = 292.0
+margin_bottom = 24.0
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DoF" type="HBoxContainer" parent="OptionMenu/OptionsContainer"]
+margin_top = 497.0
+margin_right = 511.0
+margin_bottom = 521.0
+alignment = 1
+
+[node name="DoFLabel" type="Label" parent="OptionMenu/OptionsContainer/DoF"]
+margin_left = 194.0
+margin_top = 5.0
+margin_right = 288.0
+margin_bottom = 19.0
+text = "Depth of Field:"
+
+[node name="DoF" type="CheckBox" parent="OptionMenu/OptionsContainer/DoF"]
+margin_left = 292.0
+margin_right = 316.0
+margin_bottom = 24.0
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Brightness" type="VBoxContainer" parent="OptionMenu/OptionsContainer"]
-margin_top = 507.0
-margin_right = 896.0
-margin_bottom = 537.0
+margin_top = 525.0
+margin_right = 511.0
+margin_bottom = 555.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BrightnessLabel" type="Label" parent="OptionMenu/OptionsContainer/Brightness"]
-margin_right = 896.0
+margin_right = 511.0
 margin_bottom = 14.0
 text = "Brightness:"
 align = 1
@@ -112,7 +165,7 @@ valign = 1
 
 [node name="Brightness" type="HScrollBar" parent="OptionMenu/OptionsContainer/Brightness"]
 margin_top = 18.0
-margin_right = 896.0
+margin_right = 511.0
 margin_bottom = 30.0
 min_value = 0.01
 max_value = 2.0
@@ -120,15 +173,15 @@ step = 0.01
 value = 1.0
 
 [node name="Contrast" type="VBoxContainer" parent="OptionMenu/OptionsContainer"]
-margin_top = 541.0
-margin_right = 896.0
-margin_bottom = 571.0
+margin_top = 559.0
+margin_right = 511.0
+margin_bottom = 589.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ContrastLabel" type="Label" parent="OptionMenu/OptionsContainer/Contrast"]
-margin_right = 896.0
+margin_right = 511.0
 margin_bottom = 14.0
 text = "Contrast:"
 align = 1
@@ -136,7 +189,7 @@ valign = 1
 
 [node name="Contrast" type="HScrollBar" parent="OptionMenu/OptionsContainer/Contrast"]
 margin_top = 18.0
-margin_right = 896.0
+margin_right = 511.0
 margin_bottom = 30.0
 min_value = 0.01
 max_value = 2.0
@@ -144,15 +197,15 @@ step = 0.01
 value = 1.0
 
 [node name="Saturation" type="VBoxContainer" parent="OptionMenu/OptionsContainer"]
-margin_top = 575.0
-margin_right = 896.0
-margin_bottom = 605.0
+margin_top = 593.0
+margin_right = 511.0
+margin_bottom = 623.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SaturationLabel" type="Label" parent="OptionMenu/OptionsContainer/Saturation"]
-margin_right = 896.0
+margin_right = 511.0
 margin_bottom = 14.0
 text = "Saturation:"
 align = 1
@@ -160,7 +213,7 @@ valign = 1
 
 [node name="Saturation" type="HScrollBar" parent="OptionMenu/OptionsContainer/Saturation"]
 margin_top = 18.0
-margin_right = 896.0
+margin_right = 511.0
 margin_bottom = 30.0
 min_value = 0.01
 max_value = 2.0
@@ -170,9 +223,20 @@ value = 1.0
 [node name="Back" type="Button" parent="OptionMenu"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -64.0
-margin_right = 128.0
+margin_top = -56.0
+margin_right = 256.0
 text = "<= Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Save" type="Button" parent="OptionMenu"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -112.0
+margin_right = 256.0
+margin_bottom = -56.0
+text = "Save Settings"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -180,9 +244,9 @@ __meta__ = {
 [node name="OptionsLabel" type="Label" parent="OptionMenu"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 168.0
+margin_left = 39.0
 margin_top = -7.0
-margin_right = 227.0
+margin_right = 98.0
 margin_bottom = 7.0
 rect_scale = Vector2( 3, 3 )
 text = "OPTIONS"
@@ -193,9 +257,11 @@ __meta__ = {
 [connection signal="pressed" from="MainPauseMenu/Resume" to="." method="_on_Resume_pressed"]
 [connection signal="pressed" from="MainPauseMenu/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="MainPauseMenu/Quit" to="." method="_on_Quit_pressed"]
-[connection signal="pressed" from="OptionMenu/OptionsContainer/WindowMode" to="." method="_on_WindowMode_pressed"]
-[connection signal="pressed" from="OptionMenu/OptionsContainer/DoF" to="." method="_on_DoF_pressed"]
+[connection signal="toggled" from="OptionMenu/OptionsContainer/Fullscreen/Fullscreen" to="." method="_on_Fullscreen_toggled"]
+[connection signal="toggled" from="OptionMenu/OptionsContainer/Vsync/VSync" to="." method="_on_VSync_toggled"]
+[connection signal="toggled" from="OptionMenu/OptionsContainer/DoF/DoF" to="." method="_on_DoF_toggled"]
 [connection signal="value_changed" from="OptionMenu/OptionsContainer/Brightness/Brightness" to="." method="_on_Brightness_value_changed"]
 [connection signal="value_changed" from="OptionMenu/OptionsContainer/Contrast/Contrast" to="." method="_on_Contrast_value_changed"]
 [connection signal="value_changed" from="OptionMenu/OptionsContainer/Saturation/Saturation" to="." method="_on_Saturation_value_changed"]
 [connection signal="pressed" from="OptionMenu/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="OptionMenu/Save" to="." method="_on_Save_pressed"]
