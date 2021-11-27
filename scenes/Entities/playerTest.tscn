@@ -2,8 +2,9 @@
 
 [ext_resource path="res://scripts/playerTest.gd" type="Script" id=1]
 [ext_resource path="res://ressources/Nature/bush.png" type="Texture" id=2]
-[ext_resource path="res://scenes/PauseMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/UI/PauseMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Env.tres" type="Environment" id=4]
+
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 1.85517
