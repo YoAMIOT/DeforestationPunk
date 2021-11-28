@@ -12,7 +12,6 @@ __meta__ = {
 }
 
 [node name="MainPauseMenu" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -55,6 +54,7 @@ __meta__ = {
 }
 
 [node name="OptionMenu" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
