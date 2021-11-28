@@ -16,11 +16,21 @@ const BUSH_NUMBER : int = 4000;
 
 ###Variables###
 var Rng : RandomNumberGenerator = RandomNumberGenerator.new();
+var pineGenDone : bool = false;
+var bushGenDone : bool = false;
 
 
 
 ###Ready Function###
 func _ready():
+	for i in BUSH_NUMBER:
+		var instance = Bush.instance();
+		get_parent().get_node("Bushes").add_child(instance);
+		Rng.randomize();
+		var instanceXPos = Rng.randf_range(MIN_X_POS, MAX_X_POS);
+		Rng.randomize();
+		var instanceZPos = Rng.randf_range(MIN_Z_POS, MAX_Z_POS);
+		instance.translation = Vector3(instanceXPos, BUSH_Y_POS, instanceZPos);
 	for i in PINE_NUMBER:
 		var instance = Pine.instance();
 		get_parent().get_node("Pines").add_child(instance);
@@ -29,14 +39,3 @@ func _ready():
 		Rng.randomize();
 		var instanceZPos = Rng.randf_range(MIN_Z_POS, MAX_Z_POS);
 		instance.translation = Vector3(instanceXPos, PINE_Y_POS, instanceZPos);
-
-	for j in BUSH_NUMBER:
-		var instance = Bush.instance();
-		get_parent().get_node("Bushes").add_child(instance);
-		Rng.randomize();
-		var instanceXPos = Rng.randf_range(MIN_X_POS, MAX_X_POS);
-		Rng.randomize();
-		var instanceZPos = Rng.randf_range(MIN_Z_POS, MAX_Z_POS);
-		instance.translation = Vector3(instanceXPos, BUSH_Y_POS, instanceZPos);
-
-	queue_free();
