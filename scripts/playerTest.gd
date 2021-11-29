@@ -4,9 +4,7 @@ extends KinematicBody
 var speed : int = 20;
 var velocity : Vector3 = Vector3();
 
-func _ready():
-	print(get_parent().get_node("Bushes").get_child_count());
-	print(get_parent().get_node("Pines").get_child_count());
+
 
 ###Process Function###
 func _physics_process(delta):
