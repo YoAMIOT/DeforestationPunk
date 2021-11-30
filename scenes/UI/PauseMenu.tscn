@@ -87,9 +87,9 @@ color = Color( 0.32549, 0.505882, 0.498039, 0.784314 )
 polygon = PoolVector2Array( 576, 0, 576, 1080, 0, 1080, 0, 0 )
 
 [node name="Fullscreen" type="HBoxContainer" parent="OptionMenu/OptionsContainer"]
-margin_top = 390.0
+margin_top = 362.0
 margin_right = 511.0
-margin_bottom = 426.0
+margin_bottom = 398.0
 alignment = 1
 
 [node name="FulscreenLabel" type="Label" parent="OptionMenu/OptionsContainer/Fullscreen"]
@@ -109,9 +109,9 @@ __meta__ = {
 }
 
 [node name="Vsync" type="HBoxContainer" parent="OptionMenu/OptionsContainer"]
-margin_top = 430.0
+margin_top = 402.0
 margin_right = 511.0
-margin_bottom = 466.0
+margin_bottom = 438.0
 alignment = 1
 
 [node name="VSyncLabel" type="Label" parent="OptionMenu/OptionsContainer/Vsync"]
@@ -131,9 +131,9 @@ __meta__ = {
 }
 
 [node name="DoF" type="HBoxContainer" parent="OptionMenu/OptionsContainer"]
-margin_top = 470.0
+margin_top = 442.0
 margin_right = 511.0
-margin_bottom = 506.0
+margin_bottom = 478.0
 alignment = 1
 
 [node name="DoFLabel" type="Label" parent="OptionMenu/OptionsContainer/DoF"]
@@ -152,10 +152,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Brightness" type="VBoxContainer" parent="OptionMenu/OptionsContainer"]
-margin_top = 510.0
+[node name="ViewDistance" type="VBoxContainer" parent="OptionMenu/OptionsContainer"]
+margin_top = 482.0
 margin_right = 511.0
-margin_bottom = 562.0
+margin_bottom = 534.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ViewDistanceLabel" type="Label" parent="OptionMenu/OptionsContainer/ViewDistance"]
+margin_right = 511.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 2 )
+text = "View Distance:"
+align = 1
+valign = 1
+
+[node name="ViewDistance" type="HScrollBar" parent="OptionMenu/OptionsContainer/ViewDistance"]
+margin_top = 40.0
+margin_right = 511.0
+margin_bottom = 52.0
+min_value = 150.0
+max_value = 8000.0
+step = 1.0
+value = 150.0
+
+[node name="Brightness" type="VBoxContainer" parent="OptionMenu/OptionsContainer"]
+margin_top = 538.0
+margin_right = 511.0
+margin_bottom = 590.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -178,9 +203,9 @@ step = 0.01
 value = 1.0
 
 [node name="Contrast" type="VBoxContainer" parent="OptionMenu/OptionsContainer"]
-margin_top = 566.0
+margin_top = 594.0
 margin_right = 511.0
-margin_bottom = 618.0
+margin_bottom = 646.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -203,9 +228,9 @@ step = 0.01
 value = 1.0
 
 [node name="Saturation" type="VBoxContainer" parent="OptionMenu/OptionsContainer"]
-margin_top = 622.0
+margin_top = 650.0
 margin_right = 511.0
-margin_bottom = 674.0
+margin_bottom = 702.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -270,6 +295,7 @@ __meta__ = {
 [connection signal="toggled" from="OptionMenu/OptionsContainer/Fullscreen/Fullscreen" to="." method="_on_Fullscreen_toggled"]
 [connection signal="toggled" from="OptionMenu/OptionsContainer/Vsync/VSync" to="." method="_on_VSync_toggled"]
 [connection signal="toggled" from="OptionMenu/OptionsContainer/DoF/DoF" to="." method="_on_DoF_toggled"]
+[connection signal="value_changed" from="OptionMenu/OptionsContainer/ViewDistance/ViewDistance" to="." method="_on_ViewDistance_value_changed"]
 [connection signal="value_changed" from="OptionMenu/OptionsContainer/Brightness/Brightness" to="." method="_on_Brightness_value_changed"]
 [connection signal="value_changed" from="OptionMenu/OptionsContainer/Contrast/Contrast" to="." method="_on_Contrast_value_changed"]
 [connection signal="value_changed" from="OptionMenu/OptionsContainer/Saturation/Saturation" to="." method="_on_Saturation_value_changed"]
