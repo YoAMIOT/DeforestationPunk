@@ -7,7 +7,7 @@ var velocity : Vector3 = Vector3();
 
 
 ###Process Function###
-func _physics_process(delta):
+func _physics_process(_delta):
 	getInput();
 	velocity = move_and_slide(velocity, Vector3.UP, true);
 

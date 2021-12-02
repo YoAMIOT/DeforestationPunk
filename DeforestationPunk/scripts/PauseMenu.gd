@@ -17,6 +17,7 @@ func _ready():
 	#Load Data#
 	var file : File = File.new();
 	if file.file_exists(settingsFile):
+		# warning-ignore:return_value_discarded
 		file.open(settingsFile, File.READ);
 		brightness = file.get_var();
 		contrast = file.get_var();
@@ -105,6 +106,7 @@ func _on_VSync_toggled(checked : bool):
 ###Save Settings###
 func _on_Save_pressed():
 	var file : File = File.new();
+	# warning-ignore:return_value_discarded
 	file.open(settingsFile, File.WRITE);
 	file.store_var(brightness);
 	file.store_var(contrast);
