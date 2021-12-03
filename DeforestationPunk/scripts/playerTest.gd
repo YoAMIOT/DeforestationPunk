@@ -3,6 +3,14 @@ extends KinematicBody
 ###Variables###
 var speed : int = 20;
 var velocity : Vector3 = Vector3();
+var damage : int;
+
+
+
+###Ready function###
+func _ready():
+	#Ask the server data to get the weapon damage
+	Server.fetchDamage("riffle", get_instance_id());
 
 
 
@@ -26,6 +34,8 @@ func getInput():
 			velocity.z += 1;
 		if Input.is_action_pressed("right"):
 			velocity.z -= 1;
+		if Input.is_action_pressed("shoot"):
+			print(damage);
 
 	if Input.is_action_just_pressed("pause"):
 		if get_node("PauseMenu").visible == true:
@@ -39,3 +49,9 @@ func getInput():
 			get_node("PauseMenu").visible = true;
 
 	velocity = velocity.normalized() * speed;
+
+
+
+###Function to set damage###
+func setDamage(returnedDamage):
+	damage = returnedDamage;

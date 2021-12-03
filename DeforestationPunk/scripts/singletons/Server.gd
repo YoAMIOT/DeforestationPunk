@@ -3,7 +3,7 @@ extends Node
 ###Variables###
 var network : NetworkedMultiplayerENet = NetworkedMultiplayerENet.new();
 var ip : String = "127.0.0.1";
-var port : int = 1909;
+var port : int = 4180;
 
 
 
@@ -25,3 +25,11 @@ func connectionFailed():
 ###On connection successful###
 func connectionSucceeded():
 	print("===Sucessfully connected===");
+
+###Search the damages in the server's datas###
+func fetchDamage(weapon, requester):
+	rpc_id(1, "fetchDamage", weapon, requester);
+
+###Func to get back the damage of a weapon###
+remote func returnDamage(damage, requester):
+	instance_from_id(requester).setDamage(damage);

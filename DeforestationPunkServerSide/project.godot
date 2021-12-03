@@ -14,6 +14,11 @@ config/name="DeforestationPunkServerSide"
 run/main_scene="res://scenes/Server.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+ServerData="*res://scripts/singletons/ServerData.gd"
+Combat="*res://scripts/singletons/Combat.gd"
+
 [physics]
 
 common/enable_pause_aware_picking=true

@@ -1,5 +1,6 @@
 {
-	"Weapon" : {
-		"Damage" : 50
+	"riffle" :
+	{
+		"damage" : 50
 	}
 }
