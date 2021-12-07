@@ -7,10 +7,6 @@ var port : int = 4180;
 
 
 
-###Ready Function###
-func _ready():
-	connectToServer();
-
 ###Function to connect to server###
 func connectToServer():
 	network.create_client(ip, port);
