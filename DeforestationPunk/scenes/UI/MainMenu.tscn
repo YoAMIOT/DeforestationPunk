@@ -64,6 +64,7 @@ color = Color( 0.243137, 0.243137, 0.243137, 0.878431 )
 polygon = PoolVector2Array( 3600, 64, 720.001, 64, 720.001, 1024, 3600, 1024 )
 
 [node name="Error" type="Control" parent="ServerMenu"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
@@ -71,7 +72,6 @@ __meta__ = {
 }
 
 [node name="ErrorBackground" type="Polygon2D" parent="ServerMenu/Error"]
-visible = false
 position = Vector2( 288, 80 )
 scale = Vector2( 0.311111, 0.201111 )
 color = Color( 0.796078, 0.156863, 0.156863, 0.878431 )
@@ -87,6 +87,22 @@ rect_scale = Vector2( 4, 4 )
 custom_fonts/font = ExtResource( 2 )
 text = "ERROR: The Server Adress is empty,
 please enter an Adress to access a game server"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InvalidAddress" type="Label" parent="ServerMenu/Error/ErrorBackground"]
+visible = false
+margin_left = 822.858
+margin_top = 159.116
+margin_right = 1491.86
+margin_bottom = 358.116
+rect_scale = Vector2( 4, 4 )
+custom_fonts/font = ExtResource( 2 )
+text = "ERROR: The entered Address is wrong
+Please enter a valid address"
 align = 1
 valign = 1
 __meta__ = {
