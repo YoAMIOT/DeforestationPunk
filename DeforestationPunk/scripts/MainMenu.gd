@@ -1,5 +1,13 @@
 extends Control
 
+###Variables###
+var regex : RegEx = RegEx.new();
+
+
+###Ready Function###
+func _ready():
+	regex.compile("^(25[0–5]|2[0–4][0–9]|[01]?[0–9][0–9]?).(25[0–5]|2[0–4][0–9]|[01]?[0–9][0–9]?).(25[0–5]|2[0–4][0–9]|[01]?[0–9][0–9]?).(25[0–5]|2[0–4][0–9]|[01]?[0–9][0–9]?)$");
+
 ###Play###
 func _on_Play_pressed():
 	get_node("Menu").visible = false;
