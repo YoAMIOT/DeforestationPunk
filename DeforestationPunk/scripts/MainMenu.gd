@@ -2,6 +2,7 @@ extends Control
 
 ###Variables###
 var regex : RegEx = RegEx.new();
+var connectionSuccess : bool = false;
 
 
 ###Ready Function###
@@ -42,6 +43,7 @@ func _on_JoinServer_pressed():
 			Server.connectToServer();
 			get_node("ServerMenu").visible = false;
 			get_node("ConnectingToServer").visible = true;
+			get_node("ConnectingToServer/ConnectionTimeOut").start();
 		#If the address is not valid
 		else:
 			get_node("ServerMenu/Error").visible = true;
@@ -55,9 +57,11 @@ func _on_JoinServer_pressed():
 
 ###When receiving a failed connection signal###
 func onConnectionFailed():
+	Server.resetNetworkPeer();
 	get_node("ConnectingToServer/ConnectingLabel").visible = false;
 	get_node("ConnectingToServer/LoadingAnim").visible = false;
 	get_node("ConnectingToServer/ConnectionFailedLabel").visible = true;
+	get_node("ConnectingToServer/5sTimerFailure").start();
 
 
 
@@ -66,5 +70,29 @@ func onConnectionSuccess():
 	get_node("ConnectingToServer/ConnectingLabel").visible = false;
 	get_node("ConnectingToServer/LoadingAnim").visible = false;
 	get_node("ConnectingToServer/ConnectedLabel").visible = true;
+	connectionSuccess = true;
 	#if get_tree().change_scene("res://scenes/Map.tscn") != OK:
 		#print ("An unexpected error occured when trying to switch to the Map scene")
+
+
+
+###On connection timeout###
+func _on_Timer_timeout():
+	if connectionSuccess == false:
+		Server.resetNetworkPeer();
+		get_node("ConnectingToServer/ConnectingLabel").visible = false;
+		get_node("ConnectingToServer/LoadingAnim").visible = false;
+		get_node("ConnectingToServer/ConnectionTimeOutLabel").visible = true;
+		get_node("ConnectingToServer/5sTimerFailure").start();
+
+
+
+###5 seconds after a failure occurs###
+func _on_5sTimerFailure_timeout():
+	get_node("ConnectingToServer/ConnectingLabel").visible = true;
+	get_node("ConnectingToServer/LoadingAnim").visible = true;
+	get_node("ConnectingToServer/ConnectionTimeOutLabel").visible = false;
+	get_node("ConnectingToServer/ConnectedLabel").visible = false;
+	get_node("ConnectingToServer/ConnectionFailedLabel").visible = false;
+	get_node("ConnectingToServer").visible = false;
+	get_node("ServerMenu").visible = true;

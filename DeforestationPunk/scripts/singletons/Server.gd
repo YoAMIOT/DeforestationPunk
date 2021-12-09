@@ -27,7 +27,12 @@ func connectionFailed():
 func connectionSucceeded():
 	print("===Sucessfully connected===");
 	emit_signal("successfullyConnected");
-	
+
+###Func to reset the network connection###
+func resetNetworkPeer():
+	if get_tree().has_network_peer():
+		get_tree().network_peer
+
 
 ###Search the damages in the server's datas###
 func fetchDamage(weapon, requester):

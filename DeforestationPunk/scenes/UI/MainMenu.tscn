@@ -161,6 +161,7 @@ __meta__ = {
 }
 
 [node name="ConnectingToServer" type="Control" parent="."]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
@@ -212,6 +213,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ConnectionTimeOutLabel" type="Label" parent="ConnectingToServer"]
+visible = false
+margin_left = 726.0
+margin_top = 448.0
+margin_right = 882.0
+margin_bottom = 523.0
+rect_scale = Vector2( 3, 3 )
+custom_fonts/font = ExtResource( 2 )
+text = "Connection
+Time Out..."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="LoadingAnim" type="AnimatedSprite" parent="ConnectingToServer"]
 position = Vector2( 960, 624 )
 scale = Vector2( 50, 50 )
@@ -219,7 +235,17 @@ frames = SubResource( 1 )
 frame = 4
 playing = true
 
+[node name="ConnectionTimeOut" type="Timer" parent="ConnectingToServer"]
+wait_time = 30.0
+one_shot = true
+
+[node name="5sTimerFailure" type="Timer" parent="ConnectingToServer"]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="pressed" from="Menu/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Menu/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="ServerMenu/Back" to="." method="_on_Back_pressed"]
 [connection signal="pressed" from="ServerMenu/JoinServer" to="." method="_on_JoinServer_pressed"]
+[connection signal="timeout" from="ConnectingToServer/ConnectionTimeOut" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="ConnectingToServer/5sTimerFailure" to="." method="_on_5sTimerFailure_timeout"]
