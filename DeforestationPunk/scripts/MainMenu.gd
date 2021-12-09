@@ -8,6 +8,8 @@ var regex : RegEx = RegEx.new();
 func _ready():
 	regex.compile("\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b");
 	#The RegEx is: \b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b
+	Server.connect("failedToConnect", self, "onConnectionFailed");
+	Server.connect("successfullyConnected", self, "onConnectionSuccess");
 
 
 
@@ -31,16 +33,38 @@ func _on_JoinServer_pressed():
 	get_node("ServerMenu/Error/ErrorBackground/AdressEmpty").visible = false;
 	get_node("ServerMenu/Error/ErrorBackground/InvalidAddress").visible = false;
 
+	#If the line is not blank 
 	if get_node("ServerMenu/IpAddress").text.empty() == false:
 		var result = regex.search(get_node("ServerMenu/IpAddress").text);
+		#If the address is valid
 		if result:
 			Server.ip = get_node("ServerMenu/IpAddress").text;
 			Server.connectToServer();
-#		if get_tree().change_scene("res://scenes/Map.tscn") != OK:
-#			print ("An unexpected error occured when trying to switch to the Map scene")
+			get_node("ServerMenu").visible = false;
+			get_node("ConnectingToServer").visible = true;
+		#If the address is not valid
 		else:
 			get_node("ServerMenu/Error").visible = true;
 			get_node("ServerMenu/Error/ErrorBackground/InvalidAddress").visible = true;
+	#If the line is blank
 	elif get_node("ServerMenu/IpAddress").text.empty() == true:
 		get_node("ServerMenu/Error").visible = true;
 		get_node("ServerMenu/Error/ErrorBackground/AdressEmpty").visible = true;
+
+
+
+###When receiving a failed connection signal###
+func onConnectionFailed():
+	get_node("ConnectingToServer/ConnectingLabel").visible = false;
+	get_node("ConnectingToServer/LoadingAnim").visible = false;
+	get_node("ConnectingToServer/ConnectionFailedLabel").visible = true;
+
+
+
+###When receiving a signal of successful connection###
+func onConnectionSuccess():
+	get_node("ConnectingToServer/ConnectingLabel").visible = false;
+	get_node("ConnectingToServer/LoadingAnim").visible = false;
+	get_node("ConnectingToServer/ConnectedLabel").visible = true;
+	#if get_tree().change_scene("res://scenes/Map.tscn") != OK:
+		#print ("An unexpected error occured when trying to switch to the Map scene")

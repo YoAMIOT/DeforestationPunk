@@ -5,6 +5,10 @@ var network : NetworkedMultiplayerENet = NetworkedMultiplayerENet.new();
 var ip : String = "127.0.0.1";
 var port : int = 4180;
 
+###Signals###
+signal successfullyConnected;
+signal failedToConnect;
+
 
 
 ###Function to connect to server###
@@ -17,10 +21,13 @@ func connectToServer():
 ###On connection failed###
 func connectionFailed():
 	print("! Failed to connect !");
+	emit_signal("failedToConnect");
 
 ###On connection successful###
 func connectionSucceeded():
 	print("===Sucessfully connected===");
+	emit_signal("successfullyConnected");
+	
 
 ###Search the damages in the server's datas###
 func fetchDamage(weapon, requester):
