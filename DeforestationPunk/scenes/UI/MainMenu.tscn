@@ -213,26 +213,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ConnectionTimeOutLabel" type="Label" parent="ConnectingToServer"]
-visible = false
-margin_left = 726.0
-margin_top = 448.0
-margin_right = 882.0
-margin_bottom = 523.0
-rect_scale = Vector2( 3, 3 )
-custom_fonts/font = ExtResource( 2 )
-text = "Connection
-Time Out..."
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="LoadingAnim" type="AnimatedSprite" parent="ConnectingToServer"]
 position = Vector2( 960, 624 )
 scale = Vector2( 50, 50 )
 frames = SubResource( 1 )
-frame = 4
+frame = 3
 playing = true
 
 [node name="ConnectionTimeOut" type="Timer" parent="ConnectingToServer"]

@@ -18,9 +18,8 @@ func startServer():
 	network.create_server(port, maxPlayers);
 	get_tree().set_network_peer(network);
 	print("===Server Started===");
-	
-	network.connect("peer_connected", self, "peerConnected");
-	network.connect("peer_disconnected", self, "peerDisconnected");
+	var _singalPeerConnect = network.connect("peer_connected", self, "peerConnected");
+	var _singalPeerDisconnect = network.connect("peer_disconnected", self, "peerDisconnected");
 
 ###Connected peer function###
 func peerConnected(playerId):

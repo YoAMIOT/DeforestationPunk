@@ -9,8 +9,8 @@ var connectionSuccess : bool = false;
 func _ready():
 	regex.compile("\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b");
 	#The RegEx is: \b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b
-	Server.connect("failedToConnect", self, "onConnectionFailed");
-	Server.connect("successfullyConnected", self, "onConnectionSuccess");
+	var _signalFailedConnect = Server.connect("failedToConnect", self, "onConnectionFailed");
+	var _signalSuccessConnect = Server.connect("successfullyConnected", self, "onConnectionSuccess");
 
 
 
@@ -57,7 +57,6 @@ func _on_JoinServer_pressed():
 
 ###When receiving a failed connection signal###
 func onConnectionFailed():
-	Server.resetNetworkPeer();
 	get_node("ConnectingToServer/ConnectingLabel").visible = false;
 	get_node("ConnectingToServer/LoadingAnim").visible = false;
 	get_node("ConnectingToServer/ConnectionFailedLabel").visible = true;
@@ -79,10 +78,9 @@ func onConnectionSuccess():
 ###On connection timeout###
 func _on_Timer_timeout():
 	if connectionSuccess == false:
-		Server.resetNetworkPeer();
 		get_node("ConnectingToServer/ConnectingLabel").visible = false;
 		get_node("ConnectingToServer/LoadingAnim").visible = false;
-		get_node("ConnectingToServer/ConnectionTimeOutLabel").visible = true;
+		get_node("ConnectingToServer/ConnectionFailedLabel").visible = true;
 		get_node("ConnectingToServer/5sTimerFailure").start();
 
 
@@ -91,8 +89,8 @@ func _on_Timer_timeout():
 func _on_5sTimerFailure_timeout():
 	get_node("ConnectingToServer/ConnectingLabel").visible = true;
 	get_node("ConnectingToServer/LoadingAnim").visible = true;
-	get_node("ConnectingToServer/ConnectionTimeOutLabel").visible = false;
 	get_node("ConnectingToServer/ConnectedLabel").visible = false;
 	get_node("ConnectingToServer/ConnectionFailedLabel").visible = false;
 	get_node("ConnectingToServer").visible = false;
 	get_node("ServerMenu").visible = true;
+	Server.resetNetworkPeer();

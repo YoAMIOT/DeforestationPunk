@@ -1,7 +1,7 @@
 extends Node
 
 ###Variables###
-var network : NetworkedMultiplayerENet = NetworkedMultiplayerENet.new();
+var network = null;
 var ip : String = "127.0.0.1";
 var port : int = 4180;
 
@@ -13,10 +13,11 @@ signal failedToConnect;
 
 ###Function to connect to server###
 func connectToServer():
+	network = NetworkedMultiplayerENet.new();
 	network.create_client(ip, port);
 	get_tree().set_network_peer(network);
-	network.connect("connection_failed", self, "connectionFailed");
-	network.connect("connection_succeeded", self, "connectionSucceeded");
+	var _signalFailedConnect = network.connect("connection_failed", self, "connectionFailed");
+	var _signalSuccessConnect = network.connect("connection_succeeded", self, "connectionSucceeded");
 
 ###On connection failed###
 func connectionFailed():
@@ -31,7 +32,9 @@ func connectionSucceeded():
 ###Func to reset the network connection###
 func resetNetworkPeer():
 	if get_tree().has_network_peer():
-		get_tree().network_peer
+		network.disconnect("connection_failed", self, "connectionFailed");
+		network.disconnect("connection_succeeded", self, "connectionSucceeded");
+		get_tree().network_peer = null
 
 
 ###Search the damages in the server's datas###
