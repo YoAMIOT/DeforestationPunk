@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://scenes/Entities/playerTest.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Players/ClientPlayers/Sniper.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Nature/Pine.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Nature/Ground.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Nature/Bush.tscn" type="PackedScene" id=4]
@@ -25689,9 +25689,6 @@ transform = Transform( -9.99934, 0, 0.113096, 0, 0.166667, 0, -1.13095e-05, 0, -
 [node name="Fence142" parent="Fences/FenceLeft" instance=ExtResource( 5 )]
 transform = Transform( -9.99934, 0, 0.113096, 0, 0.166667, 0, -1.13095e-05, 0, -0.000999936, -112.835, -0.684542, 1.00872 )
 
-[node name="PlayerTest" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.628, 0 )
-
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.642788, -0.223637, 0.732673, 0, 0.956437, 0.291938, -0.766044, -0.187654, 0.614787, 0, 30.9907, 0 )
 light_color = Color( 1, 0.329412, 0, 1 )
@@ -25701,3 +25698,6 @@ directional_shadow_split_1 = 0.15
 directional_shadow_split_2 = 0.3
 directional_shadow_split_3 = 0.6
 directional_shadow_blend_splits = true
+
+[node name="Sniper" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63769, 0 )

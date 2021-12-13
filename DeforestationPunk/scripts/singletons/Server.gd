@@ -38,9 +38,19 @@ func resetNetworkPeer():
 
 
 ###Search the damages in the server's datas###
-func fetchDamage(weapon, requester):
-	rpc_id(1, "fetchDamage", weapon, requester);
+func fetchDamage(weapon, requester, secondary):
+	rpc_id(1, "fetchDamage", weapon, requester, secondary);
+###Search the heal in the server's datas###
+func fetchHeal(weapon, requester):
+	rpc_id(1, "fetchHeal", weapon, requester);
 
 ###Func to get back the damage of a weapon###
-remote func returnDamage(damage, requester):
-	instance_from_id(requester).setDamage(damage);
+remote func returnDamage(damage, requester, secondary):
+	if secondary == false:
+		instance_from_id(requester).setDamage(damage);
+	elif secondary == true:
+		instance_from_id(requester).setSecondaryDamage(damage);
+
+###Func to get back the heal of a weapon###
+remote func returnHeal(heal, requester):
+		instance_from_id(requester).setHeal(heal);

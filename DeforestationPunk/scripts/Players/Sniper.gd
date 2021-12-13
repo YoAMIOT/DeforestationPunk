@@ -10,7 +10,7 @@ var damage : int;
 ###Ready function###
 func _ready():
 	#Ask the server data to get the weapon damage
-	Server.fetchDamage("riffle", get_instance_id());
+	Server.fetchDamage("sniper", get_instance_id(), false);
 
 
 
@@ -34,7 +34,7 @@ func getInput():
 			velocity.z += 1;
 		if Input.is_action_pressed("right"):
 			velocity.z -= 1;
-		if Input.is_action_pressed("shoot"):
+		if Input.is_action_just_pressed("shoot"):
 			print(damage);
 
 	if Input.is_action_just_pressed("pause"):

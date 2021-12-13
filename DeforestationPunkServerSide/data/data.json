@@ -1,6 +1,23 @@
 {
-	"riffle" :
+	"automatic_riffle" :
 	{
-		"damage" : 50
+		"damage" : 10
+	},
+	"rocket_launcher" :
+	{
+		"damage" : 120
+	},
+	"welding_torch" :
+	{
+		"damage" : 15,
+		"heal" : 30
+	},
+	"chainsaw" :
+	{
+		"damage" : 30
+	},
+	"sniper" :
+	{
+		"damage" : 80
 	}
 }

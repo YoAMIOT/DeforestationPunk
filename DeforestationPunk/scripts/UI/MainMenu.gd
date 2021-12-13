@@ -28,6 +28,8 @@ func _on_Back_pressed():
 	get_node("ServerMenu").visible = false;
 	get_node("Menu").visible = true;
 
+
+
 ###Join Server###
 func _on_JoinServer_pressed():
 	get_node("ServerMenu/Error").visible = false;
@@ -53,8 +55,6 @@ func _on_JoinServer_pressed():
 		get_node("ServerMenu/Error").visible = true;
 		get_node("ServerMenu/Error/ErrorBackground/AdressEmpty").visible = true;
 
-
-
 ###When receiving a failed connection signal###
 func onConnectionFailed():
 	get_node("ConnectingToServer/ConnectingLabel").visible = false;
@@ -62,18 +62,13 @@ func onConnectionFailed():
 	get_node("ConnectingToServer/ConnectionFailedLabel").visible = true;
 	get_node("ConnectingToServer/5sTimerFailure").start();
 
-
-
 ###When receiving a signal of successful connection###
 func onConnectionSuccess():
 	get_node("ConnectingToServer/ConnectingLabel").visible = false;
 	get_node("ConnectingToServer/LoadingAnim").visible = false;
 	get_node("ConnectingToServer/ConnectedLabel").visible = true;
 	connectionSuccess = true;
-	#if get_tree().change_scene("res://scenes/Map.tscn") != OK:
-		#print ("An unexpected error occured when trying to switch to the Map scene")
-
-
+	get_node("ConnectingToServer/3sTimerSuccess").start();
 
 ###On connection timeout###
 func _on_Timer_timeout():
@@ -82,8 +77,6 @@ func _on_Timer_timeout():
 		get_node("ConnectingToServer/LoadingAnim").visible = false;
 		get_node("ConnectingToServer/ConnectionFailedLabel").visible = true;
 		get_node("ConnectingToServer/5sTimerFailure").start();
-
-
 
 ###5 seconds after a failure occurs###
 func _on_5sTimerFailure_timeout():
@@ -94,3 +87,8 @@ func _on_5sTimerFailure_timeout():
 	get_node("ConnectingToServer").visible = false;
 	get_node("ServerMenu").visible = true;
 	Server.resetNetworkPeer();
+
+###3 seconds after the succeeded connection###
+func _on_3sTimerSuccess_timeout():
+	if get_tree().change_scene("res://scenes/Map.tscn") != OK:
+		print ("An unexpected error occured when trying to switch to the Map scene")
