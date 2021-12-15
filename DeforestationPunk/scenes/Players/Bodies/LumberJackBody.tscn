@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://ressources/3DObjects/Materials/Eye.tres" type="Material" id=1]
+[ext_resource path="res://ressources/3DObjects/Materials/PurpleTeam.tres" type="Material" id=2]
+[ext_resource path="res://ressources/3DObjects/Materials/Mechanics.tres" type="Material" id=3]
+
+[sub_resource type="CubeMesh" id=2]
+material = ExtResource( 2 )
+
+[sub_resource type="CylinderMesh" id=3]
+material = ExtResource( 3 )
+
+[sub_resource type="PrismMesh" id=9]
+material = ExtResource( 2 )
+
+[sub_resource type="SphereMesh" id=5]
+material = ExtResource( 1 )
+
+[sub_resource type="CapsuleMesh" id=6]
+material = ExtResource( 2 )
+
+[sub_resource type="CylinderMesh" id=7]
+material = ExtResource( 3 )
+
+[sub_resource type="CylinderMesh" id=8]
+material = ExtResource( 3 )
+
+[node name="Body" type="Spatial"]
+
+[node name="Body" type="MeshInstance" parent="."]
+transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0 )
+mesh = SubResource( 2 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="RotativePart" type="MeshInstance" parent="."]
+transform = Transform( 0.9, 0, 0, 0, 0.25, 0, 0, 0, 0.9, 0, 1, 0 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="Head" type="MeshInstance" parent="."]
+transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 2.15, 0 )
+mesh = SubResource( 9 )
+material/0 = null
+
+[node name="Eye" type="MeshInstance" parent="."]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.559655, 2.2, 0 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="Boiler" type="MeshInstance" parent="."]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.5, -0.829861, -0.52673, 0 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="Exhaust" type="MeshInstance" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.4, 0, 0, 0, 0.1, -0.95984, 0.0583054, 0 )
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="ExhaustEnd" type="MeshInstance" parent="."]
+transform = Transform( 0.0865598, -0.050074, 0, 0.050074, 0.0865598, 0, 0, 0, 0.1, -0.998024, 0.49865, 0 )
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="Wheels" type="Spatial" parent="."]
+
+[node name="FrontLeftWheel" type="MeshInstance" parent="Wheels"]
+transform = Transform( 0.5, 0, 0, 0, -8.74228e-09, -0.5, 0, 0.2, -2.18557e-08, 0.7, -0.7, -0.95 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="RearLeftWheel" type="MeshInstance" parent="Wheels"]
+transform = Transform( 0.5, 0, 0, 0, -8.74228e-09, -0.5, 0, 0.2, -2.18557e-08, -0.7, -0.7, -0.95 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="FrontRightWheel" type="MeshInstance" parent="Wheels"]
+transform = Transform( 0.5, 0, 0, 0, -8.74228e-09, -0.5, 0, 0.2, -2.18557e-08, 0.7, -0.7, 0.95 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="RearRightWheel" type="MeshInstance" parent="Wheels"]
+transform = Transform( 0.5, 0, 0, 0, -8.74228e-09, -0.5, 0, 0.2, -2.18557e-08, -0.7, -0.7, 0.95 )
+mesh = SubResource( 8 )
+material/0 = null

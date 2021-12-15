@@ -5,16 +5,7 @@ var speed : int = 20;
 var velocity : Vector3 = Vector3();
 var damage : int;
 var secondaryDamage : int;
-
-
-
-###Ready function###
-func _ready():
-	#Ask the server data to get the weapon damage
-	Server.fetchDamage("automatic_riffle", get_instance_id(), false);
-	Server.fetchDamage("rocket_launcher", get_instance_id(), true);
-
-
+var heal : int;
 
 ###Process Function###
 func _physics_process(_delta):
@@ -44,6 +35,7 @@ func getInput():
 			print(damage);
 		if Input.is_action_just_pressed("secondary"):
 			print(secondaryDamage);
+			print(heal);
 
 		if velocity == Vector3(-1,0,-1):
 			get_node("Body").rotation_degrees.y = 135;
@@ -69,8 +61,37 @@ func getInput():
 
 
 
+###Function to get the stats of the BasicSoldier###
+func fetchBasicSoldierStats():
+	Server.fetchDamage("automatic_riffle", get_instance_id(), false);
+	Server.fetchDamage("rocket_launcher", get_instance_id(), true);
+	setHeal(0);
+
+###Function to get the stats of the BasicSoldier###
+func fetchRepairerStats():
+	Server.fetchDamage("automatic_riffle", get_instance_id(), false);
+	Server.fetchDamage("welding_torch", get_instance_id(), true);
+	Server.fetchHeal("welding_torch", get_instance_id());
+
+###Function to get the stats of the BasicSoldier###
+func fetchLumberJackStats():
+	Server.fetchDamage("automatic_riffle", get_instance_id(), false);
+	Server.fetchDamage("chainsaw", get_instance_id(), true);
+	setHeal(0);
+
+###Function to get the stats of the BasicSoldier###
+func fetchSniperStats():
+	Server.fetchDamage("sniper", get_instance_id(), false);
+	setSecondaryDamage(0);
+	setHeal(0);
+
+
+
 ###Function to set damage###
 func setDamage(returnedDamage):
 	damage = returnedDamage;
 func setSecondaryDamage(returnedDamage):
 	secondaryDamage = returnedDamage;
+###Function to set heal###
+func setHeal(returnedHeal):
+	heal = returnedHeal;

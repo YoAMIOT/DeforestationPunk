@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/Builds/Fence.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Nature/Pine.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Nature/Bush.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Players/ClientPlayers/Sniper.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Players/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Nature/Ground.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/UI/MainMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=7]
@@ -1742,7 +1742,6 @@ transform = Transform( -9.99934, 0, 0.113096, 0, 0.166667, 0, -1.13095e-05, 0, -
 transform = Transform( -9.99934, 0, 0.113096, 0, 0.166667, 0, -1.13095e-05, 0, -0.000999936, -112.835, -0.684542, 1.00872 )
 
 [node name="Pines" type="Spatial" parent="Map"]
-visible = false
 
 [node name="Pine1" parent="Map/Pines" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.3639, 8.063, 154.154 )
@@ -7718,7 +7717,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 963.555, 8.063, -867.483 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 911.712, 8.063, -843.447 )
 
 [node name="Bushes" type="Spatial" parent="Map"]
-visible = false
 
 [node name="Bush" parent="Map/Bushes" instance=ExtResource( 3 )]
 transform = Transform( 0.819152, -0.286788, 0, 0.573577, 0.409576, 0, 0, 0, 0.5, -745.224, 2.808, 4.33999 )

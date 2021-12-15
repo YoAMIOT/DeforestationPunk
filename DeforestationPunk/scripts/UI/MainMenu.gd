@@ -70,7 +70,6 @@ func onConnectionSuccess():
 	get_node("ConnectingToServer/ConnectedLabel").visible = true;
 	connectionSuccess = true;
 	get_node("ConnectingToServer/3sTimerSuccess").start();
-	get_parent().instanciatePlayer();
 
 ###On connection timeout###
 func _on_Timer_timeout():
@@ -92,6 +91,5 @@ func _on_5sTimerFailure_timeout():
 
 ###3 seconds after the succeeded connection###
 func _on_3sTimerSuccess_timeout():
+	get_parent().instanciatePlayer();
 	get_node(".").visible = false;
-	get_node("../Map/Bushes").visible = true;
-	get_node("../Map/Pines").visible = true;
