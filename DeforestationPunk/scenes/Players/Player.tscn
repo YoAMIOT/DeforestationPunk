@@ -23,6 +23,8 @@ current = true
 size = 507.72
 far = 8000.0
 
+[node name="OmniLight" type="OmniLight" parent="."]
+
 [node name="PauseMenu" parent="." instance=ExtResource( 3 )]
 visible = false
 

@@ -6,6 +6,7 @@ var velocity : Vector3 = Vector3();
 var damage : int;
 var secondaryDamage : int;
 var heal : int;
+var classType : String = "none";
 
 ###Process Function###
 func _physics_process(_delta):
@@ -13,29 +14,35 @@ func _physics_process(_delta):
 	velocity = move_and_slide(velocity, Vector3.UP, true);
 
 
-
 ###Get Input function###
 func getInput():
 	velocity = Vector3();
 
 	if get_node("PauseMenu").visible == false:
-		if Input.is_action_pressed("up"):
-			velocity.x -= 1;
-			get_node("Body").rotation_degrees.y = 180;
-		if Input.is_action_pressed("down"):
-			velocity.x += 1;
-			get_node("Body").rotation_degrees.y = 0;
-		if Input.is_action_pressed("left"):
-			velocity.z += 1;
-			get_node("Body").rotation_degrees.y = 270;
-		if Input.is_action_pressed("right"):
-			velocity.z -= 1;
-			get_node("Body").rotation_degrees.y = 90;
-		if Input.is_action_just_pressed("shoot"):
-			print(damage);
-		if Input.is_action_just_pressed("secondary"):
-			print(secondaryDamage);
-			print(heal);
+		if Input.is_action_just_pressed("classMenu"):
+			classType = "none";
+			get_node("ClassMenu").visible = true;
+			if get_node(".").has_node("Body"):
+				get_node("Body").queue_free();
+		if classType != "none":
+			if Input.is_action_pressed("up"):
+				velocity.x -= 1;
+				get_node("Body").rotation_degrees.y = 180;
+			if Input.is_action_pressed("down"):
+				velocity.x += 1;
+				get_node("Body").rotation_degrees.y = 0;
+			if Input.is_action_pressed("left"):
+				velocity.z += 1;
+				get_node("Body").rotation_degrees.y = 270;
+			if Input.is_action_pressed("right"):
+				velocity.z -= 1;
+				get_node("Body").rotation_degrees.y = 90;
+			if Input.is_action_just_pressed("shoot"):
+				print(damage);
+			if Input.is_action_just_pressed("secondary"):
+				print(secondaryDamage);
+				print(heal);
+
 
 		if velocity == Vector3(-1,0,-1):
 			get_node("Body").rotation_degrees.y = 135;
