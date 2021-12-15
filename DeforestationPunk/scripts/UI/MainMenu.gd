@@ -7,6 +7,7 @@ var connectionSuccess : bool = false;
 
 ###Ready Function###
 func _ready():
+# warning-ignore:return_value_discarded
 	regex.compile("\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b");
 	#The RegEx is: \b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b
 	var _signalFailedConnect = Server.connect("failedToConnect", self, "onConnectionFailed");
@@ -69,6 +70,7 @@ func onConnectionSuccess():
 	get_node("ConnectingToServer/ConnectedLabel").visible = true;
 	connectionSuccess = true;
 	get_node("ConnectingToServer/3sTimerSuccess").start();
+	get_parent().instanciatePlayer();
 
 ###On connection timeout###
 func _on_Timer_timeout():
@@ -90,5 +92,6 @@ func _on_5sTimerFailure_timeout():
 
 ###3 seconds after the succeeded connection###
 func _on_3sTimerSuccess_timeout():
-	if get_tree().change_scene("res://scenes/Map.tscn") != OK:
-		print ("An unexpected error occured when trying to switch to the Map scene")
+	get_node(".").visible = false;
+	get_node("../Map/Bushes").visible = true;
+	get_node("../Map/Pines").visible = true;

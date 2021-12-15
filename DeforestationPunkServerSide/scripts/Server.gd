@@ -10,6 +10,7 @@ var maxPlayers : int = 20;
 ###Ready function###
 func _ready():
 	startServer();
+	OS.set_window_fullscreen(false);
 
 
 
@@ -25,10 +26,12 @@ func startServer():
 ###Connected peer function###
 func peerConnected(playerId):
 	print("!- User" + str(playerId) + " Connected -!");
+	rpc_id(0, "SpawnNewPlayer", playerId)
 
  ###Disconnected peer function###
 func peerDisconnected(playerId):
 	print("!- User" + str(playerId) + " Disconnected -!");
+	rpc_id(0, "DespawnPlayer", playerId)
 
 
 

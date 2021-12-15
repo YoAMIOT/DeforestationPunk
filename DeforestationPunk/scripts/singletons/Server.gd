@@ -29,6 +29,21 @@ func connectionSucceeded():
 	print("===Sucessfully connected===");
 	emit_signal("successfullyConnected");
 
+
+
+###Spawn player puppet###
+remote func SpawnNewPlayer(playerId):
+	get_node("../Main").SpawnNewPlayerPuppet(playerId);
+
+
+
+
+###DeSpawn player puppet###
+remote func DespawnPlayer(playerId):
+	get_node("../Main").DespawnPlayerPuppet(playerId);
+
+
+
 ###Func to reset the network connection###
 func resetNetworkPeer():
 	if get_tree().has_network_peer():

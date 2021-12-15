@@ -28,22 +28,22 @@ func _ready():
 		vSync = file.get_var();
 		file.close();
 
-		get_parent().get_node("Camera").environment.adjustment_brightness = brightness;
-		get_parent().get_node("Camera").environment.adjustment_contrast = contrast;
-		get_parent().get_node("Camera").environment.adjustment_saturation = saturation;
-		get_parent().get_node("Camera").far = distance;
+		get_node("../Camera").environment.adjustment_brightness = brightness;
+		get_node("../Camera").environment.adjustment_contrast = contrast;
+		get_node("../Camera").environment.adjustment_saturation = saturation;
+		get_node("../Camera").far = distance;
 		OS.set_window_fullscreen(fullscreen);
-		get_parent().get_node("Camera").environment.set_dof_blur_far_enabled(dofBlur);
-		get_parent().get_node("Camera").environment.set_dof_blur_near_enabled(dofBlur);
+		get_node("../Camera").environment.set_dof_blur_far_enabled(dofBlur);
+		get_node("../Camera").environment.set_dof_blur_near_enabled(dofBlur);
 		OS.set_use_vsync(vSync);
 
 	get_node("OptionMenu/OptionsContainer/Vsync/VSync").pressed = OS.vsync_enabled;
-	get_node("OptionMenu/OptionsContainer/DoF/DoF").pressed = get_parent().get_node("Camera").environment.dof_blur_far_enabled;
+	get_node("OptionMenu/OptionsContainer/DoF/DoF").pressed = get_node("../Camera").environment.dof_blur_far_enabled;
 	get_node("OptionMenu/OptionsContainer/Fullscreen/Fullscreen").pressed = OS.window_fullscreen;
-	get_node("OptionMenu/OptionsContainer/ViewDistance/ViewDistance").value = get_parent().get_node("Camera").far;
-	get_node("OptionMenu/OptionsContainer/Brightness/Brightness").value = get_parent().get_node("Camera").environment.adjustment_brightness;
-	get_node("OptionMenu/OptionsContainer/Contrast/Contrast").value = get_parent().get_node("Camera").environment.adjustment_contrast;
-	get_node("OptionMenu/OptionsContainer/Saturation/Saturation").value = get_parent().get_node("Camera").environment.adjustment_saturation;
+	get_node("OptionMenu/OptionsContainer/ViewDistance/ViewDistance").value = get_node("../Camera").far;
+	get_node("OptionMenu/OptionsContainer/Brightness/Brightness").value = get_node("../Camera").environment.adjustment_brightness;
+	get_node("OptionMenu/OptionsContainer/Contrast/Contrast").value = get_node("../Camera").environment.adjustment_contrast;
+	get_node("OptionMenu/OptionsContainer/Saturation/Saturation").value = get_node("../Camera").environment.adjustment_saturation;
 
 
 
@@ -69,22 +69,22 @@ func _on_Back_pressed():
 
 ###Change Brightness###
 func _on_Brightness_value_changed(value):
-	get_parent().get_node("Camera").environment.adjustment_brightness = value;
+	get_node("../Camera").environment.adjustment_brightness = value;
 	brightness = value;
 
 ###Change Contrast###
 func _on_Contrast_value_changed(value):
-	get_parent().get_node("Camera").environment.adjustment_contrast = value;
+	get_node("../Camera").environment.adjustment_contrast = value;
 	contrast = value;
 
 ###Change Saturation###
 func _on_Saturation_value_changed(value):
-	get_parent().get_node("Camera").environment.adjustment_saturation = value;
+	get_node("../Camera").environment.adjustment_saturation = value;
 	saturation = value;
 
 ###Change View Distance###
 func _on_ViewDistance_value_changed(value):
-	get_parent().get_node("Camera").far = value;
+	get_node("../Camera").far = value;
 	distance = value;
 
 ###Change Window Mode###
@@ -94,8 +94,8 @@ func _on_Fullscreen_toggled(checked : bool):
 
 ###Change DofBlur###
 func _on_DoF_toggled(checked : bool):
-	get_parent().get_node("Camera").environment.set_dof_blur_far_enabled(checked);
-	get_parent().get_node("Camera").environment.set_dof_blur_near_enabled(checked);
+	get_node("../Camera").environment.set_dof_blur_far_enabled(checked);
+	get_node("../Camera").environment.set_dof_blur_near_enabled(checked);
 	dofBlur = checked;
 
 ###Change V-Sync###
