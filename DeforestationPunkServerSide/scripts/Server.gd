@@ -4,33 +4,45 @@ extends Node
 var network : NetworkedMultiplayerENet = NetworkedMultiplayerENet.new();
 var port : int = 4180;
 var maxPlayers : int = 20;
+var upnp : UPNP = UPNP.new();
+var serverStarted : bool = false;
 
 
 
 ###Ready function###
 func _ready():
-	startServer();
 	OS.set_window_fullscreen(false);
+	# warning-ignore:return_value_discarded
+	upnp.discover(2000, 2, "InternetGatewayDevice");
+	get_node("UI/IpLabel").text = upnp.query_external_address();
 
 
+
+###Button Start Server pressed###
+func _on_StartServerButton_pressed():
+	startServer();
+	serverStarted = true;
+	get_node("UI/StartServerButton").disabled = true;
 
 ###Start server function###
 func startServer():
 	# warning-ignore:return_value_discarded
 	network.create_server(port, maxPlayers);
 	get_tree().set_network_peer(network);
-	print("===Server Started===");
+	get_node("UI/Log").logPrint("===Server Started===");
 	var _singalPeerConnect = network.connect("peer_connected", self, "peerConnected");
 	var _singalPeerDisconnect = network.connect("peer_disconnected", self, "peerDisconnected");
 
+
+
 ###Connected peer function###
 func peerConnected(playerId):
-	print("!- User" + str(playerId) + " Connected -!");
+	get_node("UI/Log").logPrint("!- User" + str(playerId) + " Connected -!");
 	rpc_id(0, "SpawnNewPlayer", playerId)
 
  ###Disconnected peer function###
 func peerDisconnected(playerId):
-	print("!- User" + str(playerId) + " Disconnected -!");
+	get_node("UI/Log").logPrint("!- User" + str(playerId) + " Disconnected -!");
 	rpc_id(0, "DespawnPlayer", playerId)
 
 
