@@ -75,3 +75,7 @@ remote func receivePlayerState(playerState):
 			playerStateCollection[playerId] = playerState;
 	else:
 		playerStateCollection[playerId] = playerState;
+
+###Function to send back the world state to the player###
+func sendWorldState(worldState):
+	rpc_unreliable_id(0, "receiveWorldState", worldState);
