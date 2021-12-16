@@ -69,3 +69,9 @@ remote func returnDamage(damage, requester, secondary):
 ###Func to get back the heal of a weapon###
 remote func returnHeal(heal, requester):
 		instance_from_id(requester).setHeal(heal);
+
+
+
+###Function to send the player state to the server###
+func sendPlayerState(playerState):
+	rpc_unreliable_id(1, "receivePlayerState", playerState);

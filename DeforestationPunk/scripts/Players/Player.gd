@@ -7,10 +7,12 @@ var damage : int;
 var secondaryDamage : int;
 var heal : int;
 var classType : String = "none";
+var playerState : Dictionary;
 
 ###Process Function###
 func _physics_process(_delta):
 	getInput();
+	definePlayerState();
 	velocity = move_and_slide(velocity, Vector3.UP, true);
 
 
@@ -65,6 +67,13 @@ func getInput():
 			get_node("PauseMenu").visible = true;
 
 	velocity = velocity.normalized() * speed;
+
+
+
+###Function to setup the player state and send it to the server###
+func definePlayerState():
+	playerState = {"T" : OS.get_system_time_msecs(), "P" : global_transform.origin};
+	Server.sendPlayerState(playerState);
 
 
 
