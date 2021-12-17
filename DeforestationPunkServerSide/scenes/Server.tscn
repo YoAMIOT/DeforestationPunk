@@ -37,6 +37,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CloseServerButton" type="Button" parent="UI"]
+margin_left = 7.0
+margin_top = 464.0
+margin_right = 194.0
+margin_bottom = 511.0
+custom_fonts/font = ExtResource( 2 )
+text = "Close"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="IpLabel" type="Label" parent="UI"]
 anchor_top = 1.0
 anchor_right = 1.0
@@ -64,3 +75,4 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="UI/StartServerButton" to="." method="_on_StartServerButton_pressed"]
+[connection signal="pressed" from="UI/CloseServerButton" to="." method="_on_CloseServerButton_pressed"]

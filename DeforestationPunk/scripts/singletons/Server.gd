@@ -2,7 +2,7 @@ extends Node
 
 ###Variables###
 var network = null;
-var ip : String = "127.0.0.1";
+var ip : String = "";
 var port : int = 4180;
 
 ###Signals###

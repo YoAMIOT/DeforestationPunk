@@ -18,6 +18,11 @@ func _ready():
 	# warning-ignore:return_value_discarded
 	upnp.discover(2000, 2, "InternetGatewayDevice");
 	ip = upnp.query_external_address();
+	get_tree().set_auto_accept_quit(false)
+	# warning-ignore:return_value_discarded
+	upnp.add_port_mapping(port, port, "DefPunkServer", "UDP");
+	# warning-ignore:return_value_discarded
+	upnp.add_port_mapping(port, port, "DefPunkServer", "TCP");
 	get_node("UI/IpLabel").text = ip;
 
 
@@ -49,6 +54,7 @@ func peerConnected(playerId):
 func peerDisconnected(playerId):
 	Log.logPrint("!- User" + str(playerId) + " Disconnected -!");
 	rpc_id(0, "DespawnPlayer", playerId);
+	# warning-ignore:return_value_discarded
 	playerStateCollection.erase(playerId);
 
 
@@ -79,3 +85,18 @@ remote func receivePlayerState(playerState):
 ###Function to send back the world state to the player###
 func sendWorldState(worldState):
 	rpc_unreliable_id(0, "receiveWorldState", worldState);
+
+
+
+###Func to detect when leaving the server###
+func _notification(what):
+	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+		# warning-ignore:return_value_discarded
+		upnp.delete_port_mapping(port, "UDP");
+		# warning-ignore:return_value_discarded
+		upnp.delete_port_mapping(port, "TCP");
+		get_tree().quit();
+
+###When close server button pressed###
+func _on_CloseServerButton_pressed():
+	_notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST);
