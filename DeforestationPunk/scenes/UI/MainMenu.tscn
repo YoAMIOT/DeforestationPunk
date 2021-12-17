@@ -153,6 +153,7 @@ margin_top = 316.0
 margin_right = 1408.0
 margin_bottom = 452.0
 custom_fonts/font = ExtResource( 2 )
+text = "127.0.0.1"
 align = 1
 max_length = 15
 placeholder_text = "Server Adress"

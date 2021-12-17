@@ -32,8 +32,8 @@ func connectionSucceeded():
 
 
 ###Spawn player puppet###
-remote func SpawnNewPlayer(playerId):
-	get_node("../Main").SpawnNewPlayerPuppet(playerId);
+remote func SpawnNewPlayer(playerId, position):
+	get_node("../Main").SpawnNewPlayerPuppet(playerId, position);
 
 
 
@@ -75,3 +75,7 @@ remote func returnHeal(heal, requester):
 ###Function to send the player state to the server###
 func sendPlayerState(playerState):
 	rpc_unreliable_id(1, "receivePlayerState", playerState);
+
+###Function to receive the world state frome the server###
+remote func receiveWorldState(worldState):
+	get_node("../Main").updateWorldState(worldState);

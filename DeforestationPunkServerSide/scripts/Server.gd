@@ -48,7 +48,8 @@ func startServer():
 ###Connected peer function###
 func peerConnected(playerId):
 	Log.logPrint("!- User" + str(playerId) + " Connected -!");
-	rpc_id(0, "SpawnNewPlayer", playerId);
+	var position : Vector3 = Vector3(0, 1.204, 0);
+	rpc_id(0, "SpawnNewPlayer", playerId, position);
 
  ###Disconnected peer function###
 func peerDisconnected(playerId):
@@ -91,10 +92,6 @@ func sendWorldState(worldState):
 ###Func to detect when leaving the server###
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
-		# warning-ignore:return_value_discarded
-		upnp.delete_port_mapping(port, "UDP");
-		# warning-ignore:return_value_discarded
-		upnp.delete_port_mapping(port, "TCP");
 		get_tree().quit();
 
 ###When close server button pressed###
